@@ -40,7 +40,9 @@ func Equal(a, b []int) bool {
 
 }
 
-func sortFuncTest(t *testing.T, sf func([]int) []int) {
+type sortFunc func([]int) []int
+
+func sortFuncTest(t *testing.T, sf sortFunc) {
 	for x := range input {
 		ci := make([]int, len(input[x]))
 		copy(ci, input[x])
