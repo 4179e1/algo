@@ -6,8 +6,8 @@ import (
 )
 
 var input = [][]int{
+	[]int{2, 3, 5, 1, 4},
 	[]int{1, 2, 3, 4, 5},
-	[]int{5, 4, 3, 2, 1},
 	[]int{2, 3, 5, 4, 1},
 	[]int{1, 3, 5, 1, 3},
 	[]int{3, 5, 1},
@@ -61,4 +61,8 @@ func TestInsertSort(t *testing.T) {
 
 func TestBubbleSort(t *testing.T) {
 	sortFuncTest(t, BubbleSort)
+}
+
+func TestQuickSort(t *testing.T) {
+	sortFuncTest(t, QuickSort)
 }
