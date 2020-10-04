@@ -10,26 +10,6 @@ package sort
  * @note Complexity O ( n )
  * @return Index of Q value.
  */
-/*
-int partition (int *array, int p, int r)
-{
-	int i, j, x;
-	x = array[r];
-	i = p - 1;
-
-	for (j = p; j &lt; r; j++)
-	{
-		if (array[j] &lt; x)
-		{
-			i++;
-			swap (&amp;array[j], &amp;array[i]);
-		}
-	}
-
-	swap (&amp;array[i + 1], &amp;array[r]);
-	return i + 1;
-}
-*/
 
 func Partition(a []int) int {
 	var i, j, key int
