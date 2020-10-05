@@ -1,8 +1,6 @@
 package dp
 
 import (
-	"fmt"
-
 	"github.com/4179e1/algo/utils"
 )
 
@@ -44,7 +42,7 @@ func CoinChange(coins []int, amount int) []int {
 
 			// 从所有结果里面取一个最短的
 			cur := append(utils.IntsCopy(subsolution), coin)
-			fmt.Printf("Exchange %v best? %v <---> %v\n", n, res, cur)
+			//fmt.Printf("Exchange %v best? %v <---> %v\n", n, res, cur)
 			res = utils.IntSliceShorter(res, cur)
 		}
 
