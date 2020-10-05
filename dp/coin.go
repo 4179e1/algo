@@ -56,3 +56,33 @@ func CoinChange(coins []int, amount int) []int {
 
 	return dpf(amount)
 }
+
+func CoinChangeIter(coins []int, amount int) []int {
+
+	var sential []int
+	for i := 0; i <= amount; i++ {
+		sential = append(sential, 0)
+	}
+
+	var dp = make(map[int][]int)
+	for i := 1; i <= amount; i++ {
+		dp[i] = sential
+	}
+	dp[0] = []int{}
+
+	for i := 1; i <= amount; i++ {
+		for _, coin := range coins {
+			// 无解
+			if (i - coin) < 0 {
+				continue
+			}
+			cur := append(utils.IntsCopy(dp[i-coin]), coin)
+			//fmt.Printf("Exchange %v best? %v <---> %v\n", i, dp[i], cur)
+			dp[i] = utils.IntSliceShorter(dp[i], cur)
+		}
+	}
+	if utils.IntsEqual(dp[amount], sential) {
+		return nil
+	}
+	return dp[amount]
+}

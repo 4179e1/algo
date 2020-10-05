@@ -7,7 +7,9 @@ import (
 	"github.com/4179e1/algo/utils"
 )
 
-func TestCoinChange(t *testing.T) {
+type coinChangeFunc func([]int, int) []int
+
+func coinChangeTest(t *testing.T, ccf coinChangeFunc) {
 	type coinChg struct {
 		coins  []int
 		amount int
@@ -38,7 +40,7 @@ func TestCoinChange(t *testing.T) {
 	}
 
 	for _, item := range cases {
-		got := CoinChange(item.coins, item.amount)
+		got := ccf(item.coins, item.amount)
 		sort.Ints(item.want)
 		sort.Ints(got)
 		if !utils.IntsEqual(got, item.want) {
@@ -48,4 +50,11 @@ func TestCoinChange(t *testing.T) {
 		}
 
 	}
+}
+
+func TestCoinChange(t *testing.T) {
+	coinChangeTest(t, CoinChange)
+}
+func TestCoinChangeIter(t *testing.T) {
+	coinChangeTest(t, CoinChangeIter)
 }
