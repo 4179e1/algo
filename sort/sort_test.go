@@ -1,6 +1,7 @@
 package sort
 
 import (
+	"github.com/4179e1/algo/utils"
 	"sort"
 	"testing"
 )
@@ -27,19 +28,6 @@ func init() {
 	}
 }
 
-func Equal(a, b []int) bool {
-	if len(a) != len(b) {
-		return false
-	}
-	for i, v := range a {
-		if v != b[i] {
-			return false
-		}
-	}
-	return true
-
-}
-
 type sortFunc func([]int) []int
 
 func sortFuncTest(t *testing.T, sf sortFunc) {
@@ -49,7 +37,7 @@ func sortFuncTest(t *testing.T, sf sortFunc) {
 		want := expected[x]
 		got := sf(ci)
 
-		if !Equal(got, want) {
+		if !utils.IntsEqual(got, want) {
 			t.Errorf("Sort %v want %v got %v\n", ci, want, got)
 		}
 	}

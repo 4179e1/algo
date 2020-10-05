@@ -86,6 +86,7 @@ func NQueen(n int) []checkBoard {
 			return
 		}
 
+		// 列举所有可能的决策
 		for col := range cb[row] {
 			// 排除不合法的选择
 			if !isValid(row, col) {
@@ -95,7 +96,7 @@ func NQueen(n int) []checkBoard {
 			// 做选择
 			cb[row][col] = 'Q'
 
-			// 进入一下一行决策
+			// 进入下一行决策
 			btf(row + 1)
 
 			// 撤销选择
@@ -105,7 +106,7 @@ func NQueen(n int) []checkBoard {
 
 	}
 
-	btf(0) // let's begin with first row
+	btf(0) // 从0开始，回溯每一层的决策
 
 	return res
 }
