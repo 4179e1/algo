@@ -6,7 +6,7 @@ import (
 )
 
 func TestNewFromSlice(t *testing.T) {
-	is := []int{3, 9, 20, -1, -1, 15, 7}
+	is := []interface{}{3, 9, 20, nil, nil, 15, 7}
 	bt := NewFromSlice(is)
 
 	spew.Dump(bt)

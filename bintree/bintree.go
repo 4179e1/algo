@@ -1,18 +1,18 @@
 package bintree
 
 type BinTree struct {
-	Value int
+	Value interface{}
 	Left  *BinTree
 	Right *BinTree
 }
 
-func New(value int) *BinTree {
+func New(value interface{}) *BinTree {
 	return &BinTree{
 		Value: value,
 	}
 }
 
-func NewFromSlice(l []int) *BinTree {
+func NewFromSlice(l []interface{}) *BinTree {
 	var root *BinTree
 
 	var treeQueue []**BinTree
@@ -22,7 +22,7 @@ func NewFromSlice(l []int) *BinTree {
 	for _, item := range l {
 		pti := treeQueue[0]
 		treeQueue = treeQueue[1:]
-		if item < 0 {
+		if item == nil {
 			continue
 		}
 		if *pti == nil {
