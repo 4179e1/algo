@@ -58,3 +58,47 @@ func TestCoinChange(t *testing.T) {
 func TestCoinChangeIter(t *testing.T) {
 	coinChangeTest(t, CoinChangeIter)
 }
+
+type backPackFunc func([]int, []int, int) int
+
+func backPackTest(t *testing.T, bpf backPackFunc) {
+	type bpEntry struct {
+		costs  []int
+		values []int
+		volume int
+		ans    int
+	}
+
+	cases := []bpEntry{
+		{
+			costs:  []int{1, 1, 1, 1, 2},
+			values: []int{1, 2, 3, 4, 5},
+			volume: 3,
+			ans:    9,
+		},
+		{
+			costs:  []int{1, 1, 1, 1, 1},
+			values: []int{1, 2, 3, 4, 5},
+			volume: 3,
+			ans:    12,
+		},
+	}
+
+	for _, item := range cases {
+
+		ans := bpf(item.costs, item.values, item.volume)
+		if ans != item.ans {
+			t.Errorf("BackPack Size %d Item costs %v values %v, expected %d got %v",
+				item.volume, item.costs, item.values, item.ans, ans)
+		}
+	}
+
+}
+
+func TestZeroOneBackPack(t *testing.T) {
+	backPackTest(t, ZeroOneBackPack)
+}
+
+func TestZeroOneBackPackSO(t *testing.T) {
+	backPackTest(t, ZeroOneBackPackSpaceOptimized)
+}
