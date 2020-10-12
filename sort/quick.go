@@ -47,3 +47,30 @@ func QuickSort(a []int) []int {
 
 	return a
 }
+
+func Partition2(a []int, p, r int) int {
+	key := a[r]
+
+	i := 0
+	for j := 0; j <= r; j++ {
+		if a[j] < key {
+			a[i], a[j] = a[j], a[i]
+			i++
+		}
+	}
+	a[i], a[r] = a[r], a[i]
+	//fmt.Println(a)
+	return i
+}
+
+// r -> len(a) - 1
+func QuickSort2(a []int, p, r int) []int {
+	if p < r {
+		q := Partition2(a, p, r)
+		QuickSort2(a, p, q-1)
+		QuickSort2(a, q+1, r)
+
+	}
+
+	return a
+}

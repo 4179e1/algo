@@ -1,9 +1,10 @@
 package sort
 
 import (
-	"github.com/4179e1/algo/utils"
 	"sort"
 	"testing"
+
+	"github.com/4179e1/algo/utils"
 )
 
 var input = [][]int{
@@ -53,4 +54,17 @@ func TestBubbleSort(t *testing.T) {
 
 func TestQuickSort(t *testing.T) {
 	sortFuncTest(t, QuickSort)
+}
+
+func TestQuickSort2(t *testing.T) {
+
+	for x := range input {
+		ci := make([]int, len(input[x]))
+		copy(ci, input[x])
+		want := expected[x]
+		got := QuickSort2(ci, 0, len(ci)-1)
+		if !utils.IntsEqual(got, want) {
+			t.Errorf("Sort %v want %v got %v\n", ci, want, got)
+		}
+	}
 }
