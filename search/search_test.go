@@ -52,9 +52,12 @@ func searchWrapper(t *testing.T, sf searchFunc, bin bool) {
 	}
 
 	for _, key := range keys {
+		var wants []int
 		for _, c := range cases {
-			want := iterSearch(key, c)
-			search(t, sf, key, c, want)
+			wants = append(wants, iterSearch(key, c))
+		}
+		for i, c := range cases {
+			search(t, sf, key, c, wants[i])
 		}
 	}
 
